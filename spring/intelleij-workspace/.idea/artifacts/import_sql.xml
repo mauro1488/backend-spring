@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact name="import.sql">
+    <output-path>$PROJECT_DIR$/out/artifacts/import_sql</output-path>
+    <root id="root" />
+  </artifact>
+</component>
