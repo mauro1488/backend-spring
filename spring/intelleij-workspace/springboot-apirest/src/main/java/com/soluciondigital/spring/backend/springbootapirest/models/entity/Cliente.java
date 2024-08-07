@@ -3,6 +3,10 @@ package com.soluciondigital.spring.backend.springbootapirest.models.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -15,17 +19,37 @@ public class Cliente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotEmpty/*(message = "no puede estar vacio")*/
+    @Size(min = 4, max = 50)
+    @Column(nullable = false)
     private String nombre;
+    @NotEmpty/*(message = "no puede estar vacio")*/
     private String apellido;
+    @NotEmpty/*(message = "no puede estar vacio")*/
+    @Email
+    @Column(nullable = false, unique =true)
     private String email;
+
+    @NotNull(message = "no puede estar vacio")
     @Column(name="create_at")
     @Temporal(TemporalType.DATE)
     private Date createAt;
 
-    @PrePersist
-    public void prePersist(){
-        createAt = new Date();
+    private String foto;
+
+    public String getFoto() {
+        return foto;
     }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    /*@PrePersist
+        public void prePersist(){
+            createAt = new Date();
+        }*/
     public Long getId() {
         return id;
     }
